@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ethics and Moral Reasoning Study</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      background: #fff;
+      color: #23272F;
+    }
+    .main-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background: #fff;
+      pointer-events: none;
+      animation: bgFadeIn 1.2s cubic-bezier(.4,1,.5,1) 0.2s backwards;
+    }
+    @keyframes bgFadeIn {
+      0% { background: #e5ebf2; }
+      100% { background: #fff; }
+    }
+    .watermark {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      width: 340px;
+      height: 340px;
+      z-index: -2;
+      transform: translate(-50%, -50%);
+      opacity: 0.025;
+      pointer-events: none;
+      user-select: none;
+      filter: blur(1px);
+      animation: watermarkAppear 2.2s cubic-bezier(.4,1,.5,1) 0.3s backwards;
+      mix-blend-mode: lighten;
+    }
+    @keyframes watermarkAppear {
+      from { opacity: 0; filter: blur(8px);}
+      to { opacity: 0.025; filter: blur(1px);}
+    }
+    .header-bar {
+      width: 100vw;
+      background: #1a222c;
+      color: #fff;
+      padding: 2.2em 0 1.1em 0;
+      text-align: center;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 10;
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+      box-shadow: 0 2px 12px #23272F18;
+      overflow: hidden;
+    }
+    .header-bar h1 {
+      margin: 0;
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      text-shadow: 0 2px 16px #1a222c44, 0 0 8px #0002;
+      animation: fadeInDown 1.1s cubic-bezier(.5,1,.4,1);
+    }
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px);}
+      100% { opacity: 1; transform: none;}
+    }
+    .card {
+      background: #f6f7fa;
+      max-width: 480px;
+      margin: -44px auto 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px #23272F12, 0 1.5px 8px #23272F08;
+      padding: 64px 40px 36px 40px;
+      position: relative;
+      z-index: 3;
+      text-align: left;
+      animation: fadeInCard 1.1s cubic-bezier(.4,1,.5,1);
+      border: 1.5px solid #dde2ea;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 520px;
+    }
+    @keyframes fadeInCard {
+      0% { opacity: 0; transform: translateY(40px);}
+      100% { opacity: 1; transform: none;}
+    }
+    .card-title {
+      font-size: 1.22rem;
+      font-weight: 600;
+      color: #1a222c;
+      margin-bottom: 1.6em;
+      margin-top: 2.3em;
+      letter-spacing: -0.01em;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      animation: fadeIn 1.1s cubic-bezier(.4,1,.5,1) 0.15s backwards;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0;}
+      100% { opacity: 1;}
+    }
+    .card-desc {
+      font-size: 1.04rem;
+      color: #23272F;
+      margin-bottom: 1.8em;
+      line-height: 1.6;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      animation: fadeIn 1.1s 0.18s cubic-bezier(.4,1,.5,1) backwards;
+    }
+    .highlight-time {
+      display: inline-block;
+      background: linear-gradient(90deg, #3a3e5c 5%, #2e73b8 95%);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.13em 0.9em;
+      border-radius: 7px;
+      font-size: 1.07em;
+      margin: 0 2px;
+      letter-spacing: 0.01em;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      box-shadow: 0 1px 6px #2e73b833;
+      border: 1px solid #2e73b8;
+      animation: highlightTimeFade 2.7s cubic-bezier(.4,1,.5,1) 0.2s backwards;
+    }
+    @keyframes highlightTimeFade {
+      0% { opacity: 0;}
+      30% { opacity: 1;}
+      100% { opacity: 1;}
+    }
+    .steps-list {
+      margin: 2.2em 0 2em 0;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15em;
+      flex: 0 0 auto;
+    }
+    .steps-list li {
+      background: #e9ebf0;
+      border-radius: 7px;
+      padding: 0.92em 1.1em 0.92em 1.1em;
+      box-shadow: 0 1px 5px #23272F05;
+      font-size: 1.03rem;
+      color: #23304a;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      animation: fadeInStep 1.1s cubic-bezier(.4,1,.5,1) backwards;
+    }
+    @keyframes fadeInStep {
+      from { opacity: 0; transform: translateY(16px);}
+      to { opacity: 1; transform: none;}
+    }
+    .bottom-btn-container {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      width: 100%;
+      min-height: 70px;
+    }
+    .action-btn {
+      display: inline-block;
+      padding: 1.35em 3.4em;
+      font-size: 1.33rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, #23304a 5%, #2e73b8 95%);
+      border: none;
+      border-radius: 13px;
+      box-shadow: 0 4px 22px #2e73b828, 0 1.5px 8px #23304a11;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      margin-top: 1.5em;
+      margin-bottom: 0.6em;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: btnSimpleFadeIn 1s cubic-bezier(.4,1,.5,1) 0.85s forwards;
+      z-index: 1;
+    }
+    @keyframes btnSimpleFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Glint Shine Animation */
+    .action-btn::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(120deg, rgba(255,255,255,0.36) 0%, rgba(255,255,255,0.13) 60%, rgba(255,255,255,0.00) 100%);
+      opacity: 0.85;
+      z-index: 0;
+      /* Glint: short, quick horizontal "glance" */
+      transform: translateX(-120%) skewX(-18deg);
+      animation: glint 2.7s cubic-bezier(.5,0,.5,1) 1.1s infinite;
+      filter: blur(0.5px);
+    }
+    @keyframes glint {
+      0%   { opacity: 0.0; transform: translateX(-120%) skewX(-18deg);}
+      12%  { opacity: 0.8; }
+      18%  { opacity: 1; transform: translateX(0%) skewX(-18deg);}
+      22%  { opacity: 0.8; }
+      27%  { opacity: 0.0; transform: translateX(120%) skewX(-18deg);}
+      100% { opacity: 0.0; transform: translateX(120%) skewX(-18deg);}
+    }
+    .action-btn:after {
+      content: '';
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 110%;
+      height: 110%;
+      border-radius: inherit;
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      background: rgba(255,255,255,0.10);
+      transition: opacity 0.18s, transform 0.18s;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .action-btn:hover,
+    .action-btn:focus {
+      background: linear-gradient(90deg, #1a222c 30%, #2e73b8 100%);
+      box-shadow:
+        0 0 16px 2px #fff,
+        0 10px 36px #2e73b844;
+      transform: translateY(-1px) scale(1.01);
+      filter: brightness(1.08);
+    }
+    .action-btn:hover:after,
+    .action-btn:focus:after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.03);
+    }
+    .contact-note {
+      margin-top: 2.1em;
+      font-size: 1.03rem;
+      color: #4f5869;
+      background: #e9ebf0;
+      border-radius: 6px;
+      padding: 0.7em 0.5em;
+      box-shadow: 0 1px 6px #23272F08;
+      display: inline-block;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      text-align: center;
+    }
+    .contact-note b {
+      font-weight: 700;
+      color: #23272F;
+    }
+    @media (max-width: 600px) {
+      .watermark { width: 140px; height: 140px;}
+      .header-bar h1 { font-size: 1.23rem; }
+      .card { padding: 28px 4vw 10px 4vw; border-radius: 0; margin-top: -24px;}
+      .card-title { font-size: 1.02rem; margin-top: 1.2em;}
+      .steps-list li { font-size: 0.97rem; }
+      .contact-note { font-size: 0.90rem;}
+      .action-btn { font-size: 1rem; padding: 1em 2em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="main-bg"></div>
+  <!-- Watermark: Academic Laurel + Book SVG -->
+  <svg class="watermark" viewBox="0 0 340 340" fill="none">
+    <g>
+      <rect x="120" y="170" width="100" height="38" rx="7" fill="#1a222c" />
+      <rect x="125" y="174" width="90" height="30" rx="5" fill="#fff" />
+      <rect x="170" y="174" width="2" height="30" fill="#b5c8e6"/>
+      <path d="M90,240 Q70,190 110,150" stroke="#1a222c" stroke-width="7" fill="none"/>
+      <path d="M110,150 Q85,170 92,200" stroke="#1a222c" stroke-width="5" fill="none"/>
+      <path d="M85,210 Q95,190 120,185" stroke="#1a222c" stroke-width="5" fill="none"/>
+      <path d="M250,240 Q270,190 230,150" stroke="#1a222c" stroke-width="7" fill="none"/>
+      <path d="M230,150 Q255,170 248,200" stroke="#1a222c" stroke-width="5" fill="none"/>
+      <path d="M255,210 Q245,190 220,185" stroke="#1a222c" stroke-width="5" fill="none"/>
+    </g>
+  </svg>
+  <div class="header-bar">
+    <h1>Ethics and Moral Reasoning Study</h1>
+  </div>
+  <div class="card">
+    <div class="card-title">
+      Investigating moral reasoning through scenario-based questions
+    </div>
+    <div class="card-desc">
+      You are invited to take part in a brief, anonymous survey. You will be presented with a fictional scenarios and asked a few questions about them. Your responses will be used for research purposes.<br><br>
+      <span class="highlight-time">Estimated time: 5–10 minutes</span>
+    </div>
+    <ul class="steps-list">
+      <li>Click <b>Begin Study</b> to proceed.</li>
+      <li>Read a fictional scenario and answer related questions.</li>
+    </ul>
+    <div class="bottom-btn-container">
+      <button class="action-btn" onclick="redirectToSurvey()">Begin Study</button>
+    </div>
+    <div class="contact-note">
+      For inquiries, contact: <b>pawel.czarkowski@student.uj.edu.pl</b>
+    </div>
+  </div>
+  <script>
+    function redirectToSurvey() {
+      // 50% chance for control or experimental group
+      var controlURL = "https://forms.office.com/e/KWsKdq667v";
+      var experimentalURL = "https://forms.office.com/e/iRrDi1cxLn";
+      var target = Math.random() < 0.5 ? controlURL : experimentalURL;
+      window.location.href = target;
+    }
+  </script>
+</body>
+</html>
